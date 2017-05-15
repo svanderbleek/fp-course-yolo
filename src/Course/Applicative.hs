@@ -386,11 +386,18 @@ replicateA n =
 -- [[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3]]
 --
 filtering ::
+  forall a f.
   Applicative f =>
   (a -> f Bool)
   -> List a
   -> f (List a)
-filtering p as = undefined
+filtering p as =
+  foldRight (lift2 (:.) :: f (List a) -> f (List a) -> f (List a)) (pure Nil :: f (List a)) filtered
+  where
+    filtered :: List (f (List a))
+    filtered = map listP as
+    listP :: a -> f (List a)
+    listP a = (bool Nil (a :. Nil)) <$> (p a)
 
 -----------------------
 -- SUPPORT LIBRARIES --

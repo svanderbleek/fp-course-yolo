@@ -1,0 +1,234 @@
+### Failure in List.hs:83: expression `product (1 :. 2 :. 3 :. Nil)'
+expected: 6
+ but got: *** Exception: todo: Course.List#product
+          CallStack (from HasCallStack):
+            error, called at List.hs:92:3 in main:Course.List
+### Failure in List.hs:96: expression `sum (1 :. 2 :. 3 :. Nil)'
+expected: 6
+ but got: *** Exception: todo: Course.List#sum
+          CallStack (from HasCallStack):
+            error, called at List.hs:107:3 in main:Course.List
+### Failure in List.hs:102: expression `foldLeft (-) (sum x) x == 0'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#sum
+  CallStack (from HasCallStack):
+    error, called at List.hs:107:3 in main:Course.List
+[]
+### Failure in List.hs:111: expression `length (1 :. 2 :. 3 :. Nil)'
+expected: 3
+ but got: *** Exception: todo: Course.List#length
+          CallStack (from HasCallStack):
+            error, called at List.hs:119:3 in main:Course.List
+### Failure in List.hs:114: expression `sum (map (const 1) x) == length x'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#sum
+  CallStack (from HasCallStack):
+    error, called at List.hs:107:3 in main:Course.List
+[]
+### Failure in List.hs:123: expression `map (+10) (1 :. 2 :. 3 :. Nil)'
+expected: [11,12,13]
+ but got: *** Exception: todo: Course.List#map
+          CallStack (from HasCallStack):
+            error, called at List.hs:134:3 in main:Course.List
+### Failure in List.hs:126: expression `headOr x (map (+1) infinity) == 1'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#map
+  CallStack (from HasCallStack):
+    error, called at List.hs:134:3 in main:Course.List
+0
+### Failure in List.hs:128: expression `map id x == x'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#map
+  CallStack (from HasCallStack):
+    error, called at List.hs:134:3 in main:Course.List
+[]
+### Failure in List.hs:138: expression `filter even (1 :. 2 :. 3 :. 4 :. 5 :. Nil)'
+expected: [2,4]
+ but got: *** Exception: todo: Course.List#filter
+          CallStack (from HasCallStack):
+            error, called at List.hs:151:3 in main:Course.List
+### Failure in List.hs:141: expression `headOr x (filter (const True) infinity) == 0'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#filter
+  CallStack (from HasCallStack):
+    error, called at List.hs:151:3 in main:Course.List
+0
+### Failure in List.hs:143: expression `filter (const True) x == x'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#filter
+  CallStack (from HasCallStack):
+    error, called at List.hs:151:3 in main:Course.List
+[]
+### Failure in List.hs:145: expression `filter (const False) x == Nil'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#filter
+  CallStack (from HasCallStack):
+    error, called at List.hs:151:3 in main:Course.List
+[]
+### Failure in List.hs:155: expression `(1 :. 2 :. 3 :. Nil) ++ (4 :. 5 :. 6 :. Nil)'
+expected: [1,2,3,4,5,6]
+ but got: *** Exception: todo: Course.List#(++)
+          CallStack (from HasCallStack):
+            error, called at List.hs:170:3 in main:Course.List
+### Failure in List.hs:158: expression `headOr x (Nil ++ infinity) == 0'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#(++)
+  CallStack (from HasCallStack):
+    error, called at List.hs:170:3 in main:Course.List
+0
+### Failure in List.hs:160: expression `headOr x (y ++ infinity) == headOr 0 y'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#(++)
+  CallStack (from HasCallStack):
+    error, called at List.hs:170:3 in main:Course.List
+0
+[]
+### Failure in List.hs:162: expression `(x ++ y) ++ z == x ++ (y ++ z)'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#(++)
+  CallStack (from HasCallStack):
+    error, called at List.hs:170:3 in main:Course.List
+[]
+[]
+[]
+### Failure in List.hs:164: expression `x ++ Nil == x'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#(++)
+  CallStack (from HasCallStack):
+    error, called at List.hs:170:3 in main:Course.List
+[]
+### Failure in List.hs:176: expression `flatten ((1 :. 2 :. 3 :. Nil) :. (4 :. 5 :. 6 :. Nil) :. (7 :. 8 :. 9 :. Nil) :. Nil)'
+expected: [1,2,3,4,5,6,7,8,9]
+ but got: *** Exception: todo: Course.List#flatten
+          CallStack (from HasCallStack):
+            error, called at List.hs:188:3 in main:Course.List
+### Failure in List.hs:179: expression `headOr x (flatten (infinity :. y :. Nil)) == 0'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#flatten
+  CallStack (from HasCallStack):
+    error, called at List.hs:188:3 in main:Course.List
+0
+[]
+### Failure in List.hs:181: expression `headOr x (flatten (y :. infinity :. Nil)) == headOr 0 y'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#flatten
+  CallStack (from HasCallStack):
+    error, called at List.hs:188:3 in main:Course.List
+0
+[]
+### Failure in List.hs:183: expression `sum (map length x) == length (flatten x)'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#sum
+  CallStack (from HasCallStack):
+    error, called at List.hs:107:3 in main:Course.List
+[]
+### Failure in List.hs:192: expression `flatMap (\x -> x :. x + 1 :. x + 2 :. Nil) (1 :. 2 :. 3 :. Nil)'
+expected: [1,2,3,2,3,4,3,4,5]
+ but got: *** Exception: todo: Course.List#flatMap
+          CallStack (from HasCallStack):
+            error, called at List.hs:205:3 in main:Course.List
+### Failure in List.hs:195: expression `headOr x (flatMap id (infinity :. y :. Nil)) == 0'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#flatMap
+  CallStack (from HasCallStack):
+    error, called at List.hs:205:3 in main:Course.List
+0
+[]
+### Failure in List.hs:197: expression `headOr x (flatMap id (y :. infinity :. Nil)) == headOr 0 y'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#flatMap
+  CallStack (from HasCallStack):
+    error, called at List.hs:205:3 in main:Course.List
+0
+[]
+### Failure in List.hs:199: expression `flatMap id (x :: List (List Int)) == flatten x'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#flatMap
+  CallStack (from HasCallStack):
+    error, called at List.hs:205:3 in main:Course.List
+[]
+### Failure in List.hs:210: expression `let types = x :: List (List Int) in flatten x == flattenAgain x'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#flatten
+  CallStack (from HasCallStack):
+    error, called at List.hs:188:3 in main:Course.List
+[]
+### Failure in List.hs:228: expression `seqOptional (Full 1 :. Full 10 :. Nil)'
+expected: Full [1,10]
+ but got: *** Exception: todo: Course.List#seqOptional
+          CallStack (from HasCallStack):
+            error, called at List.hs:243:3 in main:Course.List
+### Failure in List.hs:247: expression `find even (1 :. 3 :. 5 :. Nil)'
+expected: Empty
+ but got: *** Exception: todo: Course.List#find
+          CallStack (from HasCallStack):
+            error, called at List.hs:266:3 in main:Course.List
+### Failure in List.hs:270: expression `lengthGT4 (1 :. 3 :. 5 :. Nil)'
+expected: False
+ but got: *** Exception: todo: Course.List#lengthGT4
+          CallStack (from HasCallStack):
+            error, called at List.hs:285:3 in main:Course.List
+### Failure in List.hs:289: expression `reverse Nil'
+expected: []
+ but got: *** Exception: todo: Course.List#reverse
+          CallStack (from HasCallStack):
+            error, called at List.hs:302:3 in main:Course.List
+### Failure in List.hs:295: expression `let types = x :: List Int in reverse x ++ reverse y == reverse (y ++ x)'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#(++)
+  CallStack (from HasCallStack):
+    error, called at List.hs:170:3 in main:Course.List
+[]
+[]
+### Failure in List.hs:297: expression `let types = x :: Int in reverse (x :. Nil) == x :. Nil'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#reverse
+  CallStack (from HasCallStack):
+    error, called at List.hs:302:3 in main:Course.List
+0
+### Failure in List.hs:307: expression `let (x:.y:.z:.w:._) = produce (+1) 0 in [x,y,z,w]'
+expected: [0,1,2,3]
+ but got: [*** Exception: todo: Course.List#produce
+          CallStack (from HasCallStack):
+            error, called at List.hs:317:3 in main:Course.List
+### Failure in List.hs:322: expression `notReverse Nil'
+expected: []
+ but got: *** Exception: todo: Is it even possible?
+          CallStack (from HasCallStack):
+            error, called at List.hs:332:3 in main:Course.List
+### Failure in List.hs:325: expression `let types = x :: List Int in notReverse x ++ notReverse y == notReverse (y ++ x)'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Course.List#(++)
+  CallStack (from HasCallStack):
+    error, called at List.hs:170:3 in main:Course.List
+[]
+[]
+### Failure in List.hs:327: expression `let types = x :: Int in notReverse (x :. Nil) == x :. Nil'
+*** Failed! (after 1 test): 
+Exception:
+  todo: Is it even possible?
+  CallStack (from HasCallStack):
+    error, called at List.hs:332:3 in main:Course.List
+0
+Examples: 58  Tried: 44  Errors: 0  Failures: 36

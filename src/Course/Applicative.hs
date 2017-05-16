@@ -279,12 +279,7 @@ lift4 =
   -> f b
   -> f b
 (*>) =
--- const :: a -> b -> a
--- <$> :: (a -> b) -> f a -> f b
--- <*> :: f (a -> b) -> f a -> f b
--- flip const :: a -> b -> b
--- ((flip const) <$>) :: f a -> f (b -> b)
-  (<*>) . ((flip const) <$>)
+  lift2 (flip const)
 
 -- | Apply, discarding the value of the second argument.
 -- Pronounced, left apply.
@@ -310,7 +305,7 @@ lift4 =
   -> f a
   -> f b
 (<*) =
-  flip (*>)
+  lift2 const
 
 -- | Sequences a list of structures to a structure of list.
 --
@@ -360,10 +355,10 @@ replicateA ::
   Int
   -> f a
   -> f (List a)
-replicateA n =
+replicateA n a =
 -- replicate :: (Num n, Ord n) => n -> a -> List a
 -- pure . replicate :: Int -> f a -> a -> List a
-  (pure (replicate n) <*>)
+  sequence (replicate n a)
 
 -- | Filter a list with a predicate that produces an effect.
 --
@@ -391,13 +386,11 @@ filtering ::
   (a -> f Bool)
   -> List a
   -> f (List a)
-filtering p as =
-  foldRight (lift2 (:.) :: f (List a) -> f (List a) -> f (List a)) (pure Nil :: f (List a)) filtered
+filtering p =
+  foldRight reduceEffects (pure Nil)
   where
-    filtered :: List (f (List a))
-    filtered = map listP as
-    listP :: a -> f (List a)
-    listP a = (bool Nil (a :. Nil)) <$> (p a)
+    reduceEffects a = lift2 (consOrSkip a) (p a)
+    consOrSkip a = bool id (a :.)
 
 -----------------------
 -- SUPPORT LIBRARIES --

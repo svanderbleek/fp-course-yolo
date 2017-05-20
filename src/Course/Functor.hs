@@ -1,4 +1,4 @@
-{-# LANGUAGE NoImplicitPrelude #-}
+ {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE InstanceSigs #-}
 

@@ -14,7 +14,15 @@ import Course.Functor
 import Course.Applicative
 import Course.Monad
 import qualified Data.Set as S
-import Control.Arrow as A
+import Control.Arrow
+  (first
+  ,second
+  ,loop
+  ,app
+  ,(>>>)
+  ,(<<<)
+  ,(***)
+  ,(&&&))
 
 -- $setup
 -- >>> import Test.QuickCheck.Function
@@ -47,7 +55,7 @@ instance Functor (State s) where
   -- g : s -> (a, s)
   -- ? : s -> (b, s)
   (<$>) f (State g) =
-    State $ \s -> A.first f (g s)
+    State $ g >>> first f
 
 -- | Implement the `Applicative` instance for `State s`.
 --
@@ -71,7 +79,7 @@ instance Applicative (State s) where
     -> State s a
     -> State s b
   (<*>) (State f) (State g) =
-    State $ \s -> (f s)
+    State $ f >>> second g >>> undefined
 
 -- | Implement the `Bind` instance for `State s`.
 --

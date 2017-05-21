@@ -19,6 +19,7 @@ import Control.Arrow
   ,second
   ,loop
   ,app
+  ,arr
   ,(>>>)
   ,(<<<)
   ,(***)
@@ -79,7 +80,7 @@ instance Applicative (State s) where
     -> State s a
     -> State s b
   (<*>) (State f) (State g) =
-    State $ f >>> second g >>> undefined
+    State $ f >>> first (. fst) >>> second g &&& id >>> second snd >>> first app
 
 -- | Implement the `Bind` instance for `State s`.
 --

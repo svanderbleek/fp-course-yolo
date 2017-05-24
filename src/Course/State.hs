@@ -80,7 +80,13 @@ instance Applicative (State s) where
     -> State s a
     -> State s b
   (<*>) (State f) (State g) =
-    State $ f >>> first (. fst) >>> second g &&& id >>> second snd >>> first app
+    State $ f >>> second g >>> unassoc >>> first app
+
+assoc :: ((a, b), c) -> (a, (b, c))
+assoc ((a, b), c) = (a, (b, c))
+
+unassoc :: (a, (b, c)) -> ((a, b), c)
+unassoc (a, (b, c)) = ((a, b), c)
 
 -- | Implement the `Bind` instance for `State s`.
 --
@@ -95,9 +101,7 @@ instance Monad (State s) where
     -> State s a
     -> State s b
   (=<<) f (State g) =
-    State $ \s ->
-      let (a, s') = g s in
-      runState (f a) s
+    State $ g >>> first (runState . f) >>> app
 
 -- | Run the `State` seeded with `s` and retrieve the resulting state.
 --
@@ -107,7 +111,7 @@ exec ::
   -> s
   -> s
 exec (State f) =
-  snd . f
+  f >>> snd
 
 -- | Run the `State` seeded with `s` and retrieve the resulting value.
 --
@@ -117,7 +121,7 @@ eval ::
   -> s
   -> a
 eval (State f) =
-  fst . f
+  f >>> fst
 
 -- | A `State` where the state also distributes into the produced value.
 --
@@ -126,7 +130,10 @@ eval (State f) =
 get ::
   State s s
 get =
-  State $ \s -> (s, s)
+  State $ dup
+
+dup :: a -> (a, a)
+dup a = (a, a)
 
 -- | A `State` where the resulting state is seeded with the given value.
 --
@@ -136,7 +143,7 @@ put ::
   s
   -> State s ()
 put =
-  State . const . ((),)
+  const . ((),) >>> State
 
 -- | Find the first element in a `List` that satisfies a given predicate.
 -- It is possible that no element is found, hence an `Optional` result.
